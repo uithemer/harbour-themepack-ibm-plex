@@ -1,14 +1,14 @@
 Name:          harbour-themepack-ibm-plex
 Version:       0.0.1
-Release:       1
+Release:       2
 Summary:       IBM Plex font pack
 Group:         System/Tools
 Vendor:        fravaccaro
 Distribution:  SailfishOS
-Requires: harbour-themepacksupport >= 0.0.8-1
-Packager: fravaccaro <fravaccaro@jollacommunity.it>
+Requires:      harbour-themepacksupport >= 0.8.8-1
+Packager:      fravaccaro <fravaccaro@jollacommunity.it>
 URL:           www.jollacommunity.it
-License:       GPL
+License:       GPLv3
 
 %description
 IBM Plex package for Theme pack support for Sailfish OS.
@@ -17,10 +17,22 @@ IBM Plex package for Theme pack support for Sailfish OS.
 %defattr(-,root,root,-)
 /usr/share/*
 
+%post
+mkdir -p /home/nemo/.themepack/%{name}
+if [ -d "/usr/share/%{name}/font" ]; then
+	mv /usr/share/%{name}/font /home/nemo/.themepack/%{name}/
+	ln -s /home/nemo/.themepack/%{name}/font /usr/share/%{name}/
+fi
+if [ -d "/usr/share/%{name}/font-nonlatin" ]; then
+	mv /usr/share/%{name}/font-nonlatin /home/nemo/.themepack/%{name}/
+	ln -s /home/nemo/.themepack/%{name}/ /usr/share/%{name}/
+fi
+
 %postun
 if [ $1 = 0 ]; then
     // Do stuff specific to uninstalls
-rm -rf /usr/share/harbour-themepack-{name}
+    rm -rf /usr/share/{name}
+    rm -rf /home/nemo/.themepack/%{name}
 else
 if [ $1 = 1 ]; then
     // Do stuff specific to upgrades
