@@ -1,6 +1,6 @@
 Name:          harbour-themepack-ibm-plex
 Version:       0.0.1
-Release:       3
+Release:       4
 Summary:       IBM Plex font pack
 Group:         System/Tools
 Vendor:        fravaccaro
@@ -31,11 +31,11 @@ cp -a theme/. %{buildroot}/usr/share/%{name}/
 mkdir -p /home/defaultuser/.themepack/%{name}
 if [ -d "/usr/share/%{name}/font" ]; then
     mv /usr/share/%{name}/font /home/defaultuser/.themepack/%{name}/
-    ln -s /home/defaultuser/.themepack/%{name}/font /usr/share/%{name}/
+    ln -s /home/defaultuser/.themepack/%{name}/font /usr/share/%{name}/font
 fi
 if [ -d "/usr/share/%{name}/font-nonlatin" ]; then
     mv /usr/share/%{name}/font-nonlatin /home/defaultuser/.themepack/%{name}/
-    ln -s /home/defaultuser/.themepack/%{name}/ /usr/share/%{name}/
+    ln -s /home/defaultuser/.themepack/%{name}/font-nonlatin /usr/share/%{name}/font-nonlatin
 fi
 
 %postun
@@ -49,5 +49,8 @@ elif [ $1 = 1 ]; then
 fi
 
 %changelog
+* Sun May 31 2026 0.0.1-4
+- Fix font-nonlatin symlink in %post.
+
 * Mon Nov 20 2017 0.0.1
 - First build.
