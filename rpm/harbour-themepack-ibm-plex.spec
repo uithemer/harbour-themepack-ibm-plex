@@ -7,7 +7,7 @@ Vendor:        fravaccaro
 Distribution:  SailfishOS
 Requires:      harbour-themepacksupport >= 0.8.8-1
 Packager:      fravaccaro <me@fravaccaro.com>
-URL:           www.jollacommunity.it
+URL:           https://github.com/uithemer/harbour-themepack-ibm-plex
 License:       GPLv3
 Source0:       %{name}-%{version}.tar.gz
 BuildArch:     noarch
